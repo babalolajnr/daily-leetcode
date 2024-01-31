@@ -1,15 +1,7 @@
-pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
-    let m = m as usize; // Convert m to usize
-
-    let first_m_elements: Vec<i32> = nums1.iter().take(m).cloned().collect();
-
-    let mut my_arr: Vec<i32> = Vec::new();
-    my_arr.extend(first_m_elements);
-    my_arr.extend(nums2.iter().cloned());
-
-    my_arr.sort();
-
-    *nums1 = my_arr;
+pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, _n: i32) {
+    nums1.truncate(m as usize);
+    nums1.append(nums2);
+    nums1.sort_unstable();
 }
 
 #[cfg(test)]
