@@ -52,8 +52,8 @@ pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, _n: i32) {
 /// - `0 <= nums[i] <= 50`
 /// - `0 <= val <= 100`
 pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
-    nums.iter_mut()
-        .fold(0, |acc, e| if *e != val { acc + 1 } else { acc })
+    nums.retain(|&x| x != val);
+    nums.len() as i32
 }
 
 #[cfg(test)]
@@ -91,7 +91,13 @@ mod tests {
 
         let k = remove_element(&mut nums, val);
 
-        assert_eq!(2, k)
+        let mut output = vec![2, 2];
+        output.sort();
+
+        nums.sort();
+
+        assert_eq!(2, k);
+        assert_eq!(output, nums);
     }
 
     #[test]
@@ -101,6 +107,12 @@ mod tests {
 
         let k = remove_element(&mut nums, val);
 
-        assert_eq!(5, k)
+        let mut output = vec![0, 1, 4, 0, 3];
+        output.sort();
+
+        nums.sort();
+
+        assert_eq!(5, k);
+        assert_eq!(output, nums);
     }
 }
