@@ -323,27 +323,21 @@ pub fn string_construction(s: &str) -> i32 {
 ///
 /// *Follow-up*: Could you solve the problem in linear time and in O(1) space?
 pub fn majority_element(nums: Vec<i32>) -> i32 {
-    let unique_elements = nums.iter().collect::<HashSet<_>>();
+    let mut count = 0;
+    let mut candidate = 0;
 
-    let mut majority: (i32, i32);
-
-    majority = (nums[0], 1);
-
-    for i in unique_elements {
-        let mut count = 0;
-
-        for j in &nums {
-            if i == j {
-                count += 1
-            }
+    for num in nums {
+        if count == 0 {
+            candidate = num;
         }
-
-        if majority.1 < count {
-            majority = (*i, count)
+        if num == candidate {
+            count += 1;
+        } else {
+            count -= 1;
         }
     }
 
-    majority.0
+    candidate
 }
 
 #[cfg(test)]
