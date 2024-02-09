@@ -295,7 +295,7 @@ pub fn remove_duplicates_ii(nums: &mut Vec<i32>) -> i32 {
 ///
 /// A substring of a string `S` is another string `S'` that occurs "in" `S` [Wikipedia](https://en.wikipedia.org/wiki/Substring).
 /// For example, the substrings of the string `"abc"` are `"a"`, `"b"` ,`"c"`, `"ab"`, `"bc"`, and `"abc"`.
-fn string_construction(s: &str) -> i32 {
+pub fn string_construction(s: &str) -> i32 {
     s.chars().collect::<HashSet<_>>().len() as i32
 }
 
